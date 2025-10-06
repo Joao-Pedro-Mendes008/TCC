@@ -1,0 +1,33 @@
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+    background-color: #e4e4e4;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    color: black;
+}
+
+form {
+    height: 55%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+input {
+    height: 15%;
+    width: 60%;
+    border-radius: 8px;
+    padding-left: 12px;
+}
