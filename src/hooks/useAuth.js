@@ -7,6 +7,7 @@ export async function signUp({ email, password, name, phone, role }) {
             password,
             options: {
                 data: { name, phone, role },
+                emailRedirectTo: 'http://localhost:3000/signIn',
                 shouldCreateUser: true
             }
         });

@@ -11,6 +11,10 @@ export default function signInPage() {
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const handleClick = async (e) => {
+    e.preventDefault();
+    router.push("./signUp")
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { user, error } = await signIn(email, password);
@@ -19,7 +23,7 @@ export default function signInPage() {
       return;
     }
     console.log("Login bem-sucedido:", user);
-    router.push("/dashboard");
+    router.push("/default");
   };
 
   return (
@@ -43,7 +47,7 @@ export default function signInPage() {
           <button type="submit">Entrar</button>
 
         </form>
-        <h3> Não possui cadastro? <a href="">Cadastrar-se</a></h3>
+        <h3> Não possui cadastro? <a onClick={handleClick}>Cadastrar-se</a></h3>
       </div>
     </div>
   )
