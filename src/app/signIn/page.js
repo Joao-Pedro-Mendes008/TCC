@@ -11,6 +11,7 @@ export default function signInPage() {
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("");
   const handleClick = async (e) => {
     e.preventDefault();
     router.push("./signUp")
@@ -19,7 +20,7 @@ export default function signInPage() {
     e.preventDefault();
     const { user, error } = await signIn(email, password);
     if (error || !user) {
-      console.log("Email ou senha incorretos");
+      setErrorMessage("Email ou senha incorretos");
       return;
     }
     console.log("Login bem-sucedido:", user);
@@ -46,6 +47,7 @@ export default function signInPage() {
 
           <button type="submit">Entrar</button>
 
+          {errorMessage && <p className="error">{errorMessage}</p>}
         </form>
         <h3> Não possui cadastro? <a onClick={handleClick}>Cadastrar-se</a></h3>
       </div>

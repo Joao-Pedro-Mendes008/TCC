@@ -87,3 +87,9 @@ a {
     cursor: pointer;
     text-decoration: underline;
 }
+
+.error {
+  color: red;
+  margin-top: 8px;
+  font-weight: bold;
+}
