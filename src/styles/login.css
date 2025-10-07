@@ -1,19 +1,41 @@
-.container {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #167BA7;
+}
+
+.container{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%;
-    height: 70%;
+    width: 38%;
+    height: 58%;
     background-color: #e4e4e4;
-    border-radius: 8px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     flex-direction: column;
+    opacity: .9;
+    transition: all .3s ease-in;
+}
+
+.container:hover{
+    height: 60%;
+    width: 38%;
+    opacity: 1;
 }
 
 h1 {
+    font-weight: 800;
+    margin-top: 10%;
     color: black;
+    font-size: 3rem;
+}
+
+h3 {
+    color: rgb(12, 158, 226)
 }
 
 form {
@@ -22,12 +44,46 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 12px;
 }
 
 input {
+    border-style: none;
+    background-color: rgb(202, 202, 202);
     height: 15%;
     width: 60%;
     border-radius: 8px;
     padding-left: 12px;
+    transition: .2s
+}
+
+input:focus{
+    outline: none;
+    color: rgb(109, 109, 109);
+    font-size: 1.005rem;
+    transition: .2s;
+}
+
+button {
+    margin-top: 4%;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: #0c9ee2;
+    padding: 12px;
+    border-style: none;
+    border-radius: 8px;
+    transition: .2s;
+}
+
+button:hover{
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 14px;
+    transition: .2s;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: underline;
 }
