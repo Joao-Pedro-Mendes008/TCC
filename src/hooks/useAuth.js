@@ -22,9 +22,9 @@ export async function signUp({ email, password, name, phone, role }) {
     }
 };
 
-export async function createUser({}) {
+export async function createUser({nome, email, telefone}) {
     try {
-
+        const
     } catch { }
 }
 
