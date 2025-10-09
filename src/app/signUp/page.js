@@ -23,7 +23,7 @@ export default function signUpPage() {
     return (
         <div>
             <div className="container">
-                <h1>Cadastro</h1>
+                <div className="primaryText">Cadastro</div>
                 <form onSubmit={handleSubmit}>
 
                     <input

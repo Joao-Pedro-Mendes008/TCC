@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 export default function DefaultClients() {
   const router = useRouter()
+
   return ( 
     <NavBar/>
     

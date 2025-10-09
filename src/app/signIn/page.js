@@ -30,7 +30,7 @@ export default function signInPage() {
   return (
     <div>
       <div className="container">
-        <h1>Bem vindo!</h1>
+        <div className="primaryText">Bem vindo!</div>
         <form onSubmit={handleSubmit}>
 
           <input
