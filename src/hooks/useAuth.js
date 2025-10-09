@@ -20,6 +20,12 @@ export async function signUp({ email, password, name, phone, role }) {
         console.error(err);
         return null
     }
+};
+
+export async function createUser({}) {
+    try {
+
+    } catch { }
 }
 
 export async function signIn(email, password) {
@@ -34,4 +40,4 @@ export async function signIn(email, password) {
         console.error("Erro inesperado:", err);
         return { user: null, error: err };
     }
-}
+};

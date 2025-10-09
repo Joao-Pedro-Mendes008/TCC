@@ -11,5 +11,6 @@ export default function DefaultClients() {
   const router = useRouter()
   return ( 
     <NavBar/>
+    
   )
 }
