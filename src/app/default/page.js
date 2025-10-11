@@ -12,5 +12,6 @@ export default function DefaultClients() {
 
   return ( 
     <NavBar/>
+    
   )
 }

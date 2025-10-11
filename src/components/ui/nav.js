@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import "../../styles/nav.css"
 import supabase from "../../../supabase/client";
 
+import supabase from "../../../supabase/client";
+
 export default function NavBar() {
 
     const { session } = useContext(SessionContext)
@@ -13,14 +15,20 @@ export default function NavBar() {
         router.push("/perfilPaciente")
     }
 
-    const logout = async () => {
-        await supabase.auth.signOut().then(router.push("/signIn"))
+    const exitButton = async () => {
+        await supabase.auth.signOut()
+        router.push("/signIn")
     }
 
     return (
         <div>
             {session ? (
                 <nav>
+                    <div className="containerProfile">
+                        <img className="pfp"></img  >
+                        <div className ="name" onClick={handleClick}>{session.user.user_metadata.name}</div>
+                        <div className="exitButton" onClick={exitButton}> Sair </div>
+                    </div>
                     <img className="logo" src="/quicktreatFull.png" />
                     <div className="containerProfile">
                         <div className="exitButton" onClick={logout}> Sair </div>
