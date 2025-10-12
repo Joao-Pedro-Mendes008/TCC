@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import "../../styles/nav.css"
 import supabase from "../../../supabase/client";
 
-import supabase from "../../../supabase/client";
 
 export default function NavBar() {
 
@@ -31,7 +30,6 @@ export default function NavBar() {
                     </div>
                     <img className="logo" src="/quicktreatFull.png" />
                     <div className="containerProfile">
-                        <div className="exitButton" onClick={logout}> Sair </div>
                         <div className="name" onClick={handleClick}>{session.user.user_metadata.name}</div>
                         <img className="pfp"></img  >
                     </div>
