@@ -5,14 +5,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import "../../styles/login.css"
-import supabase from "../../../supabase/client";
+import supabase from "../../../utils/supabase/client";
 import { useUser } from "@supabase/auth-helpers-react"
 
 export default function EmailVerification() {
     const router = useRouter();
     const handleClick = (e) => {
         e.preventDefault();
-        router.push('/signIn')
+        router.push('/')
     }
 
     return (

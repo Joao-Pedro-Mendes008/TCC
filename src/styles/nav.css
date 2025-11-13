@@ -6,6 +6,7 @@ body {
 }
 
 nav {
+  position: sticky;
   display: flex;
   flex-wrap: nowrap;
   background-color: #98CBE2;
@@ -13,6 +14,7 @@ nav {
   height: 10vh;
   align-items: center;
   color: #121212;
+  margin-bottom: 2.5vh;
 }
 
 .pfp {
