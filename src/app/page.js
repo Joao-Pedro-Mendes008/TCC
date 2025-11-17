@@ -1,10 +1,10 @@
 'use client'
 
-import { signIn } from "../../hooks/useAuth";
+import { signIn } from "../hooks/useAuth";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import "../../styles/login.css"
+import "../styles/login.css"
 
 
 export default function signInPage() {
@@ -14,8 +14,13 @@ export default function signInPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const handleClick = async (e) => {
     e.preventDefault();
-    router.push("./signUp")
+    router.push("/signUp/paciente")
   }
+  const handleClick2 = async (e) => {
+    e.preventDefault();
+    router.push("/signUp/consultorio")
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { user, error } = await signIn(email, password);
@@ -24,7 +29,7 @@ export default function signInPage() {
       return;
     }
     console.log("Login bem-sucedido:", user);
-    router.push("/default");
+    router.push(`/${user.user_metadata.role}/`);
   };
 
   return (
@@ -50,6 +55,7 @@ export default function signInPage() {
           {errorMessage && <p className="error">{errorMessage}</p>}
         </form>
         <h3> Não possui cadastro? <a onClick={handleClick}>Cadastrar-se</a></h3>
+        <h3> Deseja cadastrar seu consultório? <a onClick={handleClick2}>Cadastrar-se</a></h3>
       </div>
     </div>
   )

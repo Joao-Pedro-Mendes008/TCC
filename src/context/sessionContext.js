@@ -1,6 +1,6 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from "react";
-import supabase from "../../supabase/client";
+import supabase from "../../utils/supabase/client";
 
 export const SessionContext = createContext(null);
 
