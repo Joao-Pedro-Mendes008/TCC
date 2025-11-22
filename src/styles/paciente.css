@@ -2,14 +2,14 @@
     margin: auto;
     width: 95vw;
     height: 85vh;
-    max-height: 90vh; /* altura máxima da tela */
+    max-height: 90vh;
     background-color: #e4e4e4;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    overflow-y: auto; /* permite rolagem vertical */
-    scrollbar-width: thin; /* deixa a barra mais fina no Firefox */
-    scrollbar-color: #0c9ee2 #d4d4d4; /* cor da barra e do fundo */
+    overflow-y: auto; 
+    scrollbar-width: thin; 
+    scrollbar-color: #0c9ee2 #d4d4d4; 
     opacity: 0.95;
     padding: 2rem 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -18,4 +18,24 @@
 
 h3 {
     color: black
+}
+
+button {
+    width: 400px;
+    height: 50px;
+    background-color: #0c9ee2;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all .3s ease-in;
+}
+
+button:hover {
+    background-color: #0c9ee2;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all .3s ease-in;
 }

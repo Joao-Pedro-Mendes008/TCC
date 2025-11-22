@@ -208,7 +208,7 @@ export default function SignUpPage() {
             </form>
 
             <h3>
-                Já possui cadastro? <a href="/signIn">Entrar</a>
+                Já possui cadastro? <a href="/">Entrar</a>
             </h3>
         </div>
     );

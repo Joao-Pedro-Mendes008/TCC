@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #167BA7;
+  font-family: 'Google Sans Flex', sans-serif;
+  background-color: #167BA7;
+  margin: 0;
 }
 
 nav {
@@ -14,7 +15,8 @@ nav {
   height: 10vh;
   align-items: center;
   color: #121212;
-  margin-bottom: 2.5vh;
+  height: 4rem;
+  margin-bottom: 2vh;
 }
 
 .pfp {
@@ -22,13 +24,14 @@ nav {
   height: 55px;
   width: 55px;
   border-radius: 100%;
+  margin-left: -3rem;
 }
 
 .logo {
   width: 200px;
 }
 
-.containerProfile{
+.containerProfile {
   margin-left: auto;
   padding: 1rem;
   display: flex;
@@ -50,13 +53,12 @@ nav {
 }
 
 .name {
-  margin-left: 10%;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: .2s;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: .2s;
 }
 
-.name:hover{
-    font-size: 1.25rem;
-    transition: .2s;
+.name:hover {
+  font-size: 1.25rem;
+  transition: .2s;
 }

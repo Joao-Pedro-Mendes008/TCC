@@ -1,75 +1,158 @@
-import supabase from "../../utils/supabase/client";
+import supabase from "@/../utils/supabase/client"
 
-export async function newConsulta(
-    {
-        desc,
-        horario_marcado,
-        id_paciente,
-        id_consultorio
+export async function agendarConsulta({
+    desc,
+    id_paciente,
+    data_consulta,
+    horario,
+    id_procedimento
+}) {
+    try {
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        if (authError || !user) throw new Error("Usuário não autenticado");
+
+        const { data: consulta, error: consultaError } = await supabase
+            .from('consultas')
+            .insert({
+                desc,
+                horario,
+                data_consulta,
+                id_procedimento: id_procedimento,
+                id_consultorio: user.id,
+                id_paciente: id_paciente
+            })
+            .select()
+            .single();
+
+        if (consultaError) return { error: consultaError.message };
+
+        return { data: consulta, error: null };
+
+    } catch (err) {
+        return { error: err.message };
     }
-) {
-    const { data, error } = supabase
-        .from('consultas')
-        .insert(
-            [
-                {
-                    desc,
-                    horario_marcado,
-                    id_paciente,
-                    id_consultorio // lembrar de colocar o id atual do consultório no front
-                }
-            ]
-        )
 };
 
-export async function listConsulta(id_consultorio) {
+export async function listConsultas(id_consultorio) {
     try {
-        const { data, error } = await supabase
+        const { data: consultas, error } = await supabase
             .from('consultas')
-            .select('*')
-            .eq('id_consultorio', id_consultorio)
+            .select(`
+                *,
+                usuarios (nome_completo),
+                procedimentos (nome_procedimento)
+            `)
+            .eq('id_consultorio', id_consultorio);
 
-        if (!data || error) {
-            console.log("Erro ao obter ID do consultório")
-            return 
-        }
+        if (error) throw error;
+
+        return { consultas, error: null };
     } catch (err) {
+        return { consultas: [], error: err };
+    }
+};
 
+export async function updateConsulta(id_consulta, dadosAtualizados) {
+    try {
+        const { data: consulta, error } = await supabase
+            .from('consultas')
+            .update(dadosAtualizados)
+            .eq('id', id_consulta)
+            .select();
+
+        if (error) throw error;
+
+        return { consulta, error: null };
+    } catch (err) {
+        return { error: err };
+    }
+};
+
+export async function confirmarConsulta(id_consulta) {
+    try {
+        const { error } = await supabase
+            .from('consultas')
+            .update({ status: 'confirmada' })
+            .eq('id', id_consulta);
+
+        if (error) throw error;
+        return { error: null };
+    } catch (err) {
+        return { error: err };
+    }
+}
+
+export async function realizarConsulta(id_consulta) {
+    try {
+        const { error } = await supabase
+            .from('consultas')
+            .update({ status: 'realizada' })
+            .eq('id', id_consulta);
+
+        if (error) throw error;
+        return { error: null };
+    } catch (err) {
+        return { error: err };
+    }
+}
+
+export async function cancelarConsulta(id_consulta) {
+    try {
+        const { error } = await supabase
+            .from('consultas')
+            .update({ status: 'cancelada' })
+            .eq('id', id_consulta);
+
+        if (error) throw error;
+        return { error: null };
+    } catch (err) {
+        return { error: err };
+    }
+}
+
+export async function deleteConsulta(id_consulta) {
+    try {
+        const { error } = await supabase
+            .from('consultas')
+            .delete()
+            .eq('id', id_consulta);
+
+        if (error) throw error;
+        return { error: null };
+    } catch (err) {
+        return { error: err };
+    }
+};
+
+export async function desconfirmarConsulta(id_consulta) {
+    try {
+        const { error } = await supabase
+            .from('consultas')
+            .update({ status: 'nao-confirmada' })
+            .eq('id', id_consulta);
+
+        if (error) throw error;
+        return { error: null };
+    } catch (err) {
+        return { error: err };
     }
 }
 
 
-
-export async function listConsultaByName(id_consultorio, nome_paciente) {
-
+export async function getConsultaById(idConsulta) {
     try {
-        const { data: paciente, error: errorPaciente } = await supabase
-            .from('usuarios')
-            .select('id')
-            .eq('nome', nome_paciente)
-            .limit(1)
-
-        if (!paciente || errorPaciente) {
-            console.log("O paciente não existe")
-            return { paciente: null, errorPaciente }
-        }
-
         const { data, error } = await supabase
             .from('consultas')
-            .select('*')
-            .eq('id_consultorio', id_consultorio)
-            .eq('id_paciente', paciente.id)
+            .select(`
+                *,
+                usuarios (*),
+                procedimentos (*)
+            `)
+            .eq('id', idConsulta)
+            .single();
 
-        if (!data || error) {
-            console.log("Paciente não encontrado", error)
-            return { data: null, error }
-        }
-        console.log("Paciente encontrado com sucesso!")
-        return { data, error: null }
-
+        return { data, error };
     } catch (err) {
-        console.log("Erro" + err)
+        return { data: null, error: err };
     }
-}
-
-
+};
