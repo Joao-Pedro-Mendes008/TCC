@@ -12,14 +12,17 @@ export default function DefaultClients() {
   const router = useRouter()
   const { session } = useContext(SessionContext)
 
-  return ( 
+  return (
     <div>
     <NavBar/>
-    <div className="container_pagina">
+      <div className="container_pagina">
       <h3>Consultas próximas: </h3>
+      <div className="consultas_proximas">
+        
+      </div>
 
       <h3>Consultar agenda completa</h3>
-    </div>
+      </div>
     </div>
   )
 }

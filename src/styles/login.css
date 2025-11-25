@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Google Sans Flex', sans-serif;
     background-color: #167BA7;
     margin: 0;
     height: 100vh;
@@ -30,7 +30,6 @@ body {
 
 .container:hover {
     opacity: 1;
-    transform: scale(1.01);
 }
 
 .primaryText {
@@ -90,8 +89,7 @@ button {
 button:hover {
     cursor: pointer;
     border-radius: 10px;
-    padding: 14px;
-    transition: .2s;
+    padding: 12px;
 }
 
 a {

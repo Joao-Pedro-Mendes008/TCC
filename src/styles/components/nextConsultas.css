@@ -1,0 +1,79 @@
+.lista-container {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card {
+    align-self: flex-start;
+    width: 87vw;
+    justify-content: flex-start;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-left-color: rgb(132, 0, 255);
+    border-left-width: 6px;
+    border-left-style: solid;
+    color: #333;
+}
+
+.card-nome {
+    font-size: 1.1rem;
+    font-weight: 200;
+    color: #111;
+}
+
+.card-procedimento {
+    color: rgb(0, 42, 255);
+    font-weight: 300;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.card-data {
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.botoes{
+    display:flex;
+    gap: 1rem;
+}
+
+.btn-confirmar{
+    width: 6vw;
+    border: solid 2px rgb(85, 236, 108);
+    border-radius: 12px;
+    background: none;
+    color: #121212;
+}
+
+.btn-cancelar{
+    width: 6vw;
+    border: solid 2px rgb(255, 102, 102);
+    border-radius: 12px;
+    background: none;
+    color: #121212;
+}
+
+.btn-detalhes{
+    width: 6vw;
+    border: solid 2px rgb(255, 255, 255);
+    border-radius: 12px;
+    background: none;
+    color: #121212;
+}

@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
+
+.botao-voltar {
+    font-family: 'Google Sans Flex', sans-serif;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 12vw;
+    height: 5vh;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: #0c9ee2;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .2s;
+    outline: none;
+    border: none;
+}
