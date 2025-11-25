@@ -8,10 +8,11 @@ import {
     deleteConsulta,
     realizarConsulta,
     confirmarConsulta,
-    desconfirmarConsulta
+    desconfirmarConsulta,
 } from "@/hooks/consultas";
 import { Trash2, Check, CheckCheck, Clock } from 'lucide-react';
 import "@/styles/consulta.css"
+import BotaoVoltar from "@/components/ui/botaoVoltar";
 
 export default function TelaConsulta() {
     const router = useRouter();
@@ -24,6 +25,7 @@ export default function TelaConsulta() {
     const [realizado, setRealizado] = useState(false);
     const [desconfirmado, setDesconfirmado] = useState(false);
     const [confirmado, setConfirmado] = useState(false);
+    const [status, setStatus] = useState(null)
 
     useEffect(() => {
         const carregarDados = async () => {
@@ -46,7 +48,7 @@ export default function TelaConsulta() {
             alert("Erro ao confirmar: " + error.message);
             setConfirmado(false);
         } else {
-            alert("Consulta confirmada com sucesso!");
+            window.location.reload();
         }
     };
 
@@ -61,7 +63,7 @@ export default function TelaConsulta() {
             alert("Erro ao cancelar: " + error.message);
             setExcluindo(false);
         } else {
-            alert("Consulta cancelada com sucesso!");
+            window.location.reload();
         }
     };
 
@@ -76,7 +78,7 @@ export default function TelaConsulta() {
             alert("Erro ao realizar: " + error.message);
             setRealizado(false);
         } else {
-            alert("Consulta realizada com sucesso!");
+            window.location.reload();
         }
     };
 
@@ -91,7 +93,7 @@ export default function TelaConsulta() {
             alert("Erro ao desconfirmar: " + error.message);
             setDesconfirmado(false);
         } else {
-            alert("Consulta desconfirmada com sucesso!");
+            window.location.reload();
         }
     };
 
@@ -160,6 +162,7 @@ export default function TelaConsulta() {
                             <Trash2 />
                         </button>
                     </div>
+                    <BotaoVoltar />
                 </div>
 
 

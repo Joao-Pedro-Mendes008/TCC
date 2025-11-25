@@ -44,12 +44,13 @@ export default function ConsultorioDashboard() {
     setLoading(false);
 
     if (errorAgendamento) {
-      alert(`Erro ao agendar: ${errorAgendamento}`);
+      alert("Erro ao agendar, selecione outro horário ou data!");
     } else {
       alert("Consulta agendada com sucesso!");
       setDesc("");
       setHorario("");
       setDataConsulta("");
+      window.location.reload();
     }
   };
 

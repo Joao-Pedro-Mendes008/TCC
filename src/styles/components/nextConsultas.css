@@ -9,8 +9,8 @@
 
 .card {
     align-self: flex-start;
-    width: 60vw;
-    justify-content: center;
+    width: 87vw;
+    justify-content: flex-start;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -22,7 +22,6 @@
     border-left-width: 6px;
     border-left-style: solid;
     color: #333;
-    cursor: pointer;
 }
 
 .card-nome {
@@ -46,6 +45,10 @@
     gap: 5px;
 }
 
+button {
+    cursor: pointer;
+}
+
 .botoes{
     display:flex;
     gap: 1rem;
@@ -62,6 +65,14 @@
 .btn-cancelar{
     width: 6vw;
     border: solid 2px rgb(255, 102, 102);
+    border-radius: 12px;
+    background: none;
+    color: #121212;
+}
+
+.btn-detalhes{
+    width: 6vw;
+    border: solid 2px rgb(255, 255, 255);
     border-radius: 12px;
     background: none;
     color: #121212;

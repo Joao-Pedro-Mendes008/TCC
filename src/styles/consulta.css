@@ -54,7 +54,7 @@ body {
 }
 
 .cancelar-consulta {
-    width: 11.5vw;
+    width: 16vw;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -67,11 +67,11 @@ body {
 }
 
 .realizar-consulta {
-    width: 14vw;
+    width: 20vw;
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: #00ff33;
+    background-color: #01921e;
     color: white;
     padding: 8px 16px;
     border: none;
@@ -80,7 +80,7 @@ body {
 }
 
 .confirmar-consulta {
-    width: 8vw;
+    width: 16vw;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -93,7 +93,7 @@ body {
 }
 
 .desconfirmar-consulta {
-    width: 9vw;
+    width: 16vw;
     display: flex;
     align-items: center;
     gap: 8px;

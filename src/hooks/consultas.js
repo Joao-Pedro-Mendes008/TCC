@@ -1,4 +1,5 @@
-import supabase from "@/../utils/supabase/client"
+import supabase from "@/../utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 export async function agendarConsulta({
     desc,
@@ -31,6 +32,7 @@ export async function agendarConsulta({
     } catch (err) {
         return { error: err.message };
     }
+
 };
 
 export async function listConsultas(id_consultorio) {
@@ -50,6 +52,7 @@ export async function listConsultas(id_consultorio) {
     } catch (err) {
         return { consultas: [], error: err };
     }
+
 };
 
 export async function updateConsulta(id_consulta, dadosAtualizados) {
@@ -66,27 +69,30 @@ export async function updateConsulta(id_consulta, dadosAtualizados) {
     } catch (err) {
         return { error: err };
     }
+
 };
 
 export async function confirmarConsulta(id_consulta) {
     try {
         const { error } = await supabase
             .from('consultas')
-            .update({ status: 'confirmada' })
+            .update({ status: 'Confirmada' })
             .eq('id', id_consulta);
 
         if (error) throw error;
+
         return { error: null };
     } catch (err) {
         return { error: err };
     }
+
 }
 
 export async function realizarConsulta(id_consulta) {
     try {
         const { error } = await supabase
             .from('consultas')
-            .update({ status: 'realizada' })
+            .update({ status: 'Realizada' })
             .eq('id', id_consulta);
 
         if (error) throw error;
@@ -94,13 +100,14 @@ export async function realizarConsulta(id_consulta) {
     } catch (err) {
         return { error: err };
     }
+
 }
 
 export async function cancelarConsulta(id_consulta) {
     try {
         const { error } = await supabase
             .from('consultas')
-            .update({ status: 'cancelada' })
+            .update({ status: 'Cancelada' })
             .eq('id', id_consulta);
 
         if (error) throw error;
@@ -108,6 +115,7 @@ export async function cancelarConsulta(id_consulta) {
     } catch (err) {
         return { error: err };
     }
+
 }
 
 export async function deleteConsulta(id_consulta) {
@@ -122,20 +130,23 @@ export async function deleteConsulta(id_consulta) {
     } catch (err) {
         return { error: err };
     }
+
 };
 
 export async function desconfirmarConsulta(id_consulta) {
     try {
         const { error } = await supabase
             .from('consultas')
-            .update({ status: 'nao-confirmada' })
+            .update({ status: 'Não confirmada' })
             .eq('id', id_consulta);
 
         if (error) throw error;
+
         return { error: null };
     } catch (err) {
         return { error: err };
     }
+
 }
 
 
@@ -155,4 +166,6 @@ export async function getConsultaById(idConsulta) {
     } catch (err) {
         return { data: null, error: err };
     }
+
 };
+
