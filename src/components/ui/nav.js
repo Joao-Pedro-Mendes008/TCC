@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { SessionContext } from "@/context/sessionContext";
 import { useRouter } from "next/navigation";
 import "../../styles/nav.css"
@@ -6,6 +6,8 @@ import supabase from "../../../utils/supabase/client";
 
 export default function NavBar() {
     const { session } = useContext(SessionContext)
+    const [data, setData] = useState(null)
+    const [loading, setLoading] = useState(true)
     const router = useRouter()
     
     const handleClick = () => {
@@ -20,11 +22,37 @@ export default function NavBar() {
         router.refresh()
     }
 
-    const avatarUrl = session?.user?.user_metadata?.avatar_url;
+    useEffect(() => {
+        const fetchPerfil = async () => {
+            if (!session?.user) return;
+
+            try {
+                const { data, error } = await supabase
+                    .from('consultorios') 
+                    .select('*')
+                    .eq('id', session.user.id)
+                    .single();
+
+                if (error) throw error;
+                if (data) setData(data);
+                
+            } catch (error) {
+                console.error("Erro ao buscar perfil:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (session) {
+            fetchPerfil();
+        }
+    }, [session]);
+
+    const avatarUrl = data?.avatar_url || session?.user?.user_metadata?.avatar_url;
 
     return (
         <nav>
-            <img className="logo" src="/quicktreatFull.png" alt="Logo QuickTreat" />
+            <img className="logo" src="/quicktreatFull.png" alt="Logo QuickTreat" onClick={() => router.push(`/${session.user.user_metadata.role}`)}/>
 
             {session ? (
                 <div className="containerProfile">
@@ -35,7 +63,7 @@ export default function NavBar() {
                     )}
 
                     <div className="name" onClick={handleClick}>
-                        {session.user.user_metadata.nome || "Usuário"}
+                        {data?.nome || "Usuário"}
                     </div>
                     
                     <div className="exitButton" onClick={exitButton}>

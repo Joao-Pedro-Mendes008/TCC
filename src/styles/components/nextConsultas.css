@@ -9,7 +9,7 @@
 
 .card {
     align-self: flex-start;
-    width: 87vw;
+    width: 100%;
     justify-content: flex-start;
     background-color: #fff;
     padding: 20px;

@@ -9,7 +9,10 @@ import { agendarConsulta } from "@/hooks/consultas";
 import SelectPaciente from "@/components/consultorio/selectPaciente";
 import SelectProcedimento from "@/components/consultorio/selectProcedimento";
 import ListaConsultas from "@/components/consultorio/nextConsultas";
-import supabase from "@/../utils/supabase/client"
+import BotaoRedirecionar from "@/components/ui/botaoRedirecionar";
+import supabase from "@/../utils/supabase/client";
+import { useRouter } from "next/navigation";
+import AdicionarPaciente from "@/components/consultorio/adicionarPacientes";
 
 export default function ConsultorioDashboard() {
   const { session } = useContext(SessionContext);
@@ -20,6 +23,7 @@ export default function ConsultorioDashboard() {
   const [desc, setDesc] = useState("");
   const [horario, setHorario] = useState("");
   const [data_consulta, setDataConsulta] = useState("");
+  const router = useRouter();
 
   if (!session) return <div style={{ padding: "20px" }}>Carregando sessão...</div>
 
@@ -65,6 +69,7 @@ export default function ConsultorioDashboard() {
         <div className="card-maior">
           <h4 className="titulo-secao">Proximas consultas</h4>
           <ListaConsultas />
+          <BotaoRedirecionar texto="Agenda completa" url="/consultorio/agenda" />
         </div>
 
         <div className="card-maior">
@@ -106,15 +111,14 @@ export default function ConsultorioDashboard() {
               required
             />
 
-            <button
+            <BotaoRedirecionar
               type="submit"
-              disabled={loading}
-              className="btn-agendar"
-            >
-              {loading ? "Agendando..." : "Agendar"}
-            </button>
+              texto="Agendar"
+              url="/consultorio"
+            />
           </form>
         </div>
+        <AdicionarPaciente aoSalvar={() => router.refresh()} />
       </Container>
     </div>
   );

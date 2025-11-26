@@ -150,22 +150,25 @@ export async function desconfirmarConsulta(id_consulta) {
 }
 
 
-export async function getConsultaById(idConsulta) {
+export async function getConsultaById(idConsulta, idConsultorioAtual) {
     try {
         const { data, error } = await supabase
-            .from('consultas')
+            .from("consultas")
             .select(`
                 *,
-                usuarios (*),
-                procedimentos (*)
+                procedimentos ( nome_procedimento ),
+                usuarios (
+                    nome_completo,
+                    email,
+                    telefone
+                )
             `)
-            .eq('id', idConsulta)
+            .eq("id", idConsulta)
+            .eq("id_consultorio", idConsultorioAtual)
             .single();
 
         return { data, error };
-    } catch (err) {
-        return { data: null, error: err };
+    } catch (error) {
+        return { data: null, error };
     }
-
-};
-
+}
