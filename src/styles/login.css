@@ -13,15 +13,15 @@ body {
 .container {
     width: 40vw;
     height: 55vh;
-    max-height: 90vh; /* altura máxima da tela */
+    max-height: 90vh; 
     background-color: #e4e4e4;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: auto; /* permite rolagem vertical */
-    scrollbar-width: thin; /* deixa a barra mais fina no Firefox */
-    scrollbar-color: #0c9ee2 #d4d4d4; /* cor da barra e do fundo */
+    overflow-y: auto;
+    scrollbar-width: thin; 
+    scrollbar-color: #0c9ee2 #d4d4d4; 
     opacity: 0.95;
     padding: 2rem 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -58,7 +58,7 @@ form {
 input,
 select {
     border-style: none;
-    background-color: rgb(202, 202, 202);
+    background-color: #cacaca;
     color: #121212;
     height: 40px;
     width: 80%;
@@ -84,6 +84,7 @@ button {
     border-radius: 8px;
     transition: .2s;
     width: 50%;
+    color: white;
 }
 
 button:hover {
@@ -103,7 +104,6 @@ a {
     font-weight: bold;
 }
 
-/* Scrollbar personalizada (para Chrome, Edge e Safari) */
 .container::-webkit-scrollbar {
     width: 8px;
 }

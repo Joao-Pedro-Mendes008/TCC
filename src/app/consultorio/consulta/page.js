@@ -3,6 +3,8 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import NavBar from "@/components/ui/nav";
 import Container from "@/components/ui/container";
+import { useContext } from "react";
+import { SessionContext } from "@/context/sessionContext";
 import {
     getConsultaById,
     deleteConsulta,
@@ -18,8 +20,9 @@ function ConteudoConsulta() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const idConsulta = searchParams.get("id");
+    const {session} = useContext(SessionContext);
 
-    const idConsultorioLogado = "ID-DO-SEU-CONSULTORIO-AQUI"; 
+    const idConsultorioLogado = session?.user.id; 
 
     const [consulta, setConsulta] = useState(null);
     const [loadingDados, setLoadingDados] = useState(true);

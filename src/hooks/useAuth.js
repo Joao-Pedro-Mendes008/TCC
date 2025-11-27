@@ -25,17 +25,21 @@ export async function signUpPacientes({
                 emailRedirectTo: 'http://localhost:3000/',
                 shouldCreateUser: true
             }
-
         });
+
         if (signUpError) {
             console.error(signUpError.message);
-            return null
-        };
+            return null;
+        }
+
+        const userId = signUpData.user?.id;
+
+        if (!userId) return null;
 
         const { data: insertData, error: insertError } = await supabase
             .from('usuarios')
-            .insert([{
-                id: signUpData.user.id,
+            .upsert({
+                id: userId,
                 email,
                 nome_completo: nome,
                 telefone,
@@ -49,7 +53,9 @@ export async function signUpPacientes({
                 cidade,
                 estado,
                 cep
-            }])
+            }, {
+                onConflict: 'email'
+            })
             .select();
 
         if (insertError) {

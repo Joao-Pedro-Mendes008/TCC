@@ -15,7 +15,7 @@ body {
     box-sizing: border-box;
     width: 95%;
     max-width: 1400px;
-    min-height: 85vh;
+    height: 87vh;
     margin: 20px auto;
     padding: 2rem;
     background-color: #eaeaea;
@@ -24,4 +24,6 @@ body {
     flex-direction: column;
     opacity: 0.98;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.14);
+    overflow: auto;
+    scrollbar-color: #0c9ee2 transparent;
 }

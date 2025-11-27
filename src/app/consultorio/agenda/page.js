@@ -33,7 +33,6 @@ export default function AgendaConsultorio() {
                 .eq('id_consultorio', session.user.id);
 
             if (termoBusca.length > 0) {
-                // ALTERADO: Removida a primeira % para buscar "Começa com"
                 query = query
                     .ilike('usuarios.nome_completo', `${termoBusca}%`)
                     .order('data_consulta', { ascending: false });

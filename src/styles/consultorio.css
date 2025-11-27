@@ -1,8 +1,10 @@
 body {
   color: #000;
   font-weight: 200;
+  overflow: hidden; 
+  height: 100vh;    
+  margin: 0;        
 }
-
 .titulo-ola {
   font-size: 28px;
   font-weight: 200;
@@ -19,6 +21,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
   gap: 1rem;
   padding: 1rem 2rem;
@@ -42,6 +45,7 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   width: 100%;
   max-width: 1200px;

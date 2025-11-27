@@ -29,44 +29,55 @@ export default function AdicionarPaciente({ aoSalvar }) {
     setLoading(true);
 
     try {
-      const { data: usuarioExistente } = await supabase
-        .from('usuarios')
-        .select('id')
-        .eq('email', formData.email)
-        .single();
+        const { data: usuariosEncontrados, error: erroBusca } = await supabase
+            .from('usuarios')
+            .select('id')
+            .or(`email.eq.${formData.email},cpf.eq.${formData.cpf}`);
 
-      let usuarioId = usuarioExistente?.id;
+        if (erroBusca) throw erroBusca;
 
-      if (!usuarioId) {
-        const { data: novoUsuario, error: erroCriacao } = await supabase
-          .from('usuarios')
-          .insert([formData])
-          .select()
-          .single();
+        let usuarioId = null;
+        if (usuariosEncontrados && usuariosEncontrados.length > 0) {
+            usuarioId = usuariosEncontrados[0].id;
+        }
 
-        if (erroCriacao) throw erroCriacao;
-        usuarioId = novoUsuario.id;
-      }
+        if (!usuarioId) {
+            const { data: dadosInseridos, error: erroCriacao } = await supabase
+                .from('usuarios')
+                .insert([{ ...formData }])
+                .select('id');
 
-      const { error: erroVinculo } = await supabase
-        .from('consultorios_usuarios')
-        .insert({
-          consultorio_id: idConsultorioLogado,
-          usuario_id: usuarioId
-        });
+            if (erroCriacao) throw erroCriacao;
+            
+            if (dadosInseridos && dadosInseridos.length > 0) {
+                usuarioId = dadosInseridos[0].id;
+            } else {
+                throw new Error("Usuário criado, mas não foi possível recuperar o ID (verifique as políticas RLS).");
+            }
+        }
 
-      if (erroVinculo && erroVinculo.code !== '23505') throw erroVinculo;
+        const { error: erroVinculo } = await supabase
+            .from('consultorios_usuarios')
+            .upsert({
+                consultorio_id: idConsultorioLogado,
+                usuario_id: usuarioId
+            }, { 
+                onConflict: 'consultorio_id, usuario_id'
+            });
 
-      alert("Paciente adicionado com sucesso!");
-      setFormData({ nome_completo: "", email: "", telefone: "", cpf: "", endereco: "" });
-      if (aoSalvar) aoSalvar();
+        if (erroVinculo) throw erroVinculo;
+
+        alert("Paciente vinculado/criado com sucesso!");
+        setFormData({ nome_completo: "", email: "", telefone: "", cpf: "", endereco: "" });
+        if (aoSalvar) aoSalvar();
 
     } catch (error) {
-      alert("Erro: " + error.message);
+        console.error(error);
+        alert("Erro: " + error.message);
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   return (
     <div className="container-adicionar">
