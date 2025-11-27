@@ -14,7 +14,7 @@ export default function signInPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const handleClick = async (e) => {
     e.preventDefault();
-    router.push("/signUp/paciente")
+    router.push("/recover")
   }
   const handleClick2 = async (e) => {
     e.preventDefault();
@@ -54,7 +54,7 @@ export default function signInPage() {
 
           {errorMessage && <p className="error">{errorMessage}</p>}
         </form>
-        <h3> Não possui cadastro? <a onClick={handleClick}>Cadastrar-se</a></h3>
+        <h3>Esqueceu sua senha? <a onClick={handleClick}>Recuperar</a></h3>
         <h3> Deseja cadastrar seu consultório? <a onClick={handleClick2}>Cadastrar-se</a></h3>
       </div>
     </div>

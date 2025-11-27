@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
+
+.redefinir-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #167BA7;
+    font-family: 'Google Sans Flex', sans-serif;
+}
+
+.card-redefinir {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 60vw;
+    max-width: 45vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: #e4e4e4;
+    border-radius: 12px;
+}
+
+.titulo-redefinir {
+    font-size: 36px;
+    font-weight: 600;
+    color: #191919;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.subtitulo {
+    font-size: 15px;
+    color: #666;
+    text-align: center;
+    line-height: 1.5;
+    width: 80%;
+}
+
+.form-redefinir {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.password-group {
+    width: 60%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-senha {
+    width: 100%;
+    padding: 12px 16px;
+    padding-right: 40px; 
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background-color: rgb(232, 232, 232);
+    color: #191919;
+    font-family: 'Google Sans Flex', sans-serif;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+}
+
+.input-senha:focus {
+    outline: none;
+    border-color: #191919;
+    background-color: rgb(232, 232, 232);
+    box-shadow: 0 0 0 4px rgba(25, 25, 25, 0.1);
+}
+
+.btn-eye {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.btn-salvar-senha {
+    width: 60%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background-color: #167BA7;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-salvar-senha:hover {
+    background-color: #12658a;
+}
+
+.btn-salvar-senha:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.erro-msg {
+    color: #d32f2f;
+    font-size: 14px;
+    text-align: center;
+    background-color: #ffebee;
+    padding: 10px;
+    border-radius: 8px;
+    width: 60%;
+}
