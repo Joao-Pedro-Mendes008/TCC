@@ -1,12 +1,13 @@
 "use client"
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react"; // Adicione useEffect
+import { useRouter, useSearchParams } from "next/navigation"; // Adicione useSearchParams
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Eye, EyeOff } from 'lucide-react';
-import "@/styles/components/redefinirSenha.css";
+import "@/styles/RedefinirSenha.css";
 
 export default function RedefinirSenhaPage() {
     const router = useRouter();
+    const searchParams = useSearchParams(); // Para ler o código da URL
     const supabase = createClientComponentClient();
     
     const [senha, setSenha] = useState("");
@@ -14,6 +15,27 @@ export default function RedefinirSenhaPage() {
     const [loading, setLoading] = useState(false);
     const [erro, setErro] = useState(null);
     const [mostrarSenha, setMostrarSenha] = useState(false);
+    const [sessaoRecuperada, setSessaoRecuperada] = useState(false); // Novo estado
+
+    // --- NOVO: Efeito para processar o Código do Email ---
+    useEffect(() => {
+        const recuperarSessao = async () => {
+            // Verifica se tem o código na URL (ex: ?code=xxxxxx)
+            const code = searchParams.get('code');
+            
+            if (code) {
+                // Troca o código pela sessão do usuário
+                const { error } = await supabase.auth.exchangeCodeForSession(code);
+                if (error) {
+                    setErro("Link inválido ou expirado. Tente solicitar novamente.");
+                } else {
+                    setSessaoRecuperada(true); // Sucesso! Usuário está logado
+                }
+            }
+        };
+
+        recuperarSessao();
+    }, [searchParams, supabase]);
 
     const handleRedefinir = async (e) => {
         e.preventDefault();
@@ -32,6 +54,7 @@ export default function RedefinirSenhaPage() {
         setLoading(true);
 
         try {
+            // O comando updateUser só funciona se o useEffect acima tiver funcionado
             const { error } = await supabase.auth.updateUser({
                 password: senha
             });

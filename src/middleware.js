@@ -10,6 +10,16 @@ export async function middleware(req) {
     error,
   } = await supabase.auth.getUser();
 
+  const pathname = req.nextUrl.pathname.toLowerCase();
+
+  const publicRoutes = ["/", "/login", "/signup", "/recover", "/auth", "/callback"];
+  
+  const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route));
+
+  if (isPublicRoute) {
+    return res;
+  }
+
   if (error || !user) {
     return NextResponse.redirect(new URL("/", req.url));
   }
@@ -19,8 +29,6 @@ export async function middleware(req) {
   if (!role) {
     return NextResponse.redirect(new URL("/", req.url));
   }
-
-  const pathname = req.nextUrl.pathname.toLowerCase();
 
   if (role === "paciente" && pathname.startsWith("/consultorio")) {
     return NextResponse.redirect(new URL("/paciente", req.url));
@@ -34,5 +42,7 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/paciente/:path*", "/consultorio/:path*"],
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
 };

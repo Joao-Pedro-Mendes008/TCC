@@ -21,9 +21,9 @@ export default function RecoverPage() {
         try {
             const origin = window.location.origin;
 
-            // Aponta para o callback e diz que o próximo passo é /recover/redefinirSenha
+            // MUDANÇA: Removemos o '/callback' e apontamos direto para a página final
             const { error } = await supabase.auth.resetPasswordForEmail(email, {
-                redirectTo: `${origin}/callback?next=/recover/redefinirSenha`, 
+                redirectTo: `${origin}/recover/redefinirSenha`,
             });
 
             if (error) throw error;
@@ -40,7 +40,7 @@ export default function RecoverPage() {
         <div className="recuperar-container">
             <div className="card-recuperar">
                 <h1 className="titulo-recuperar">Recuperar Acesso</h1>
-                
+
                 {!enviado ? (
                     <>
                         <p className="texto-instrucao">
@@ -48,15 +48,15 @@ export default function RecoverPage() {
                         </p>
 
                         <form onSubmit={handleEnviarEmail} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-                            <input 
-                                type="email" 
+                            <input
+                                type="email"
                                 className="input-email"
                                 placeholder="seu@email.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
-                            
+
                             {erro && <div style={{ color: '#d32f2f', fontSize: '14px', textAlign: 'center', width: '60%' }}>{erro}</div>}
 
                             <button type="submit" className="btn-enviar-link" disabled={loading}>
