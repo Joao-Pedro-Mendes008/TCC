@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
-import { createSupabaseServerClient } from "@/../utils/supabase/server";
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
+import { NextResponse } from 'next/server';
 
 export async function middleware(req) {
   const res = NextResponse.next();
-  const supabase = createSupabaseServerClient({ req, res });
+  const supabase = createMiddlewareClient({ req, res });
 
   const {
     data: { user },

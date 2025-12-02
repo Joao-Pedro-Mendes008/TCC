@@ -1,85 +1,87 @@
 "use client"
-import { useState, useEffect } from "react"; // Adicione useEffect
-import { useRouter, useSearchParams } from "next/navigation"; // Adicione useSearchParams
+import { useState, useEffect } from "react"; 
+import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Eye, EyeOff } from 'lucide-react';
-import "@/styles/RedefinirSenha.css";
+import "@/styles/components/redefinirSenha.css";
 
 export default function RedefinirSenhaPage() {
     const router = useRouter();
-    const searchParams = useSearchParams(); // Para ler o código da URL
     const supabase = createClientComponentClient();
     
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
     const [loading, setLoading] = useState(false);
-    const [erro, setErro] = useState(null);
+    const [sessaoAtiva, setSessaoAtiva] = useState(false);
+    const [verificando, setVerificando] = useState(true);
     const [mostrarSenha, setMostrarSenha] = useState(false);
-    const [sessaoRecuperada, setSessaoRecuperada] = useState(false); // Novo estado
 
-    // --- NOVO: Efeito para processar o Código do Email ---
     useEffect(() => {
-        const recuperarSessao = async () => {
-            // Verifica se tem o código na URL (ex: ?code=xxxxxx)
-            const code = searchParams.get('code');
-            
-            if (code) {
-                // Troca o código pela sessão do usuário
-                const { error } = await supabase.auth.exchangeCodeForSession(code);
-                if (error) {
-                    setErro("Link inválido ou expirado. Tente solicitar novamente.");
-                } else {
-                    setSessaoRecuperada(true); // Sucesso! Usuário está logado
-                }
+        const checkSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                setSessaoAtiva(true);
             }
+            setVerificando(false);
         };
-
-        recuperarSessao();
-    }, [searchParams, supabase]);
+        checkSession();
+    }, [supabase]);
 
     const handleRedefinir = async (e) => {
         e.preventDefault();
-        setErro(null);
+        setLoading(true);
 
         if (senha.length < 6) {
-            setErro("A senha deve ter pelo menos 6 caracteres.");
-            return;
+             alert("A senha deve ter no mínimo 6 caracteres.");
+             setLoading(false);
+             return;
         }
 
         if (senha !== confirmarSenha) {
-            setErro("As senhas não coincidem.");
+            alert("As senhas não coincidem.");
+            setLoading(false);
             return;
         }
 
-        setLoading(true);
-
         try {
-            // O comando updateUser só funciona se o useEffect acima tiver funcionado
             const { error } = await supabase.auth.updateUser({
                 password: senha
             });
 
             if (error) throw error;
 
-            alert("Sua senha foi atualizada com sucesso!");
-            router.push("/login"); 
+            alert("Senha atualizada! Redirecionando...");
+            router.push("/"); 
+
         } catch (error) {
-            setErro("Erro ao atualizar: " + error.message);
+            alert("Erro ao atualizar: " + error.message);
         } finally {
             setLoading(false);
         }
     };
 
+    if (verificando) return <div className="redefinir-container"><p>Carregando...</p></div>;
+
+    if (!sessaoAtiva) return (
+        <div className="redefinir-container">
+            <div className="card-redefinir">
+                <h2 style={{color:'red', textAlign: 'center'}}>Link Expirado</h2>
+                <button 
+                    onClick={() => router.push('/recover')} 
+                    className="btn-salvar-senha"
+                    style={{marginTop: '20px'}}
+                >
+                    Tentar novamente
+                </button>
+            </div>
+        </div>
+    );
+
     return (
         <div className="redefinir-container">
             <div className="card-redefinir">
                 <h1 className="titulo-redefinir">Nova Senha</h1>
-                <p className="subtitulo">Digite sua nova senha abaixo.</p>
-
-                {erro && <div className="erro-msg">{erro}</div>}
-
                 <form onSubmit={handleRedefinir} className="form-redefinir">
-                    
                     <div className="password-group">
                         <input
                             type={mostrarSenha ? "text" : "password"}
@@ -97,7 +99,6 @@ export default function RedefinirSenhaPage() {
                             {mostrarSenha ? <EyeOff size={20} /> : <Eye size={20} />}
                         </button>
                     </div>
-
                     <div className="password-group">
                         <input
                             type="password"
@@ -108,9 +109,8 @@ export default function RedefinirSenhaPage() {
                             required
                         />
                     </div>
-
                     <button type="submit" className="btn-salvar-senha" disabled={loading}>
-                        {loading ? "Atualizando..." : "Salvar Senha"}
+                        {loading ? "Salvar..." : "Salvar Senha"}
                     </button>
                 </form>
             </div>
