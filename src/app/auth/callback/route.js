@@ -7,13 +7,15 @@ export const dynamic = 'force-dynamic';
 export async function GET(request) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');
-  const next = requestUrl.searchParams.get('next') || '/';
+
+  const targetPath = code ? '/recover/redefinirSenha' : '/';
 
   if (code) {
     const cookieStore = cookies();
     const supabase = createRouteHandlerClient({ cookies: () => cookieStore });
+    
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  return NextResponse.redirect(`${requestUrl.origin}${next}`);
+  return NextResponse.redirect(`${requestUrl.origin}${targetPath}`);
 }

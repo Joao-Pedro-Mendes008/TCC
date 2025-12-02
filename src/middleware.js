@@ -12,7 +12,7 @@ export async function middleware(req) {
 
   const pathname = req.nextUrl.pathname.toLowerCase();
 
-  const publicRoutes = ["/", "/login", "/signup", "/recover", "/auth", "/callback"];
+ const publicRoutes = ["/", "/login", "/signup", "/recover", "/auth"];
   
   const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route));
 
