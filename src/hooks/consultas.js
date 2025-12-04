@@ -140,7 +140,7 @@ export async function getConsultaById(idConsulta, idConsultorioAtual) {
             .from("consultas")
             .select(`
                 *,
-                procedimentos ( nome_procedimento ),
+                procedimentos ( nome_procedimento, preco ),
                 usuarios (
                     nome_completo,
                     email,

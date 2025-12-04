@@ -115,7 +115,7 @@ function ConteudoConsulta() {
 
                 <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     <p><strong>Status Atual:</strong> <span className={`status-badge ${consulta.status.toLowerCase()}`}>{consulta.status}</span></p>
-                    <p><strong>Procedimento:</strong> {consulta.procedimentos?.nome_procedimento} - {consulta.procedimentos?.preco}</p>
+                    <p><strong>Procedimento:</strong> {consulta.procedimentos?.nome_procedimento} - R${consulta.procedimentos?.preco}</p>
                     <p><strong>Data:</strong> {consulta.data_consulta ? new Date(consulta.data_consulta).toLocaleDateString() : '-'}</p>
                     <p><strong>Horário:</strong> {consulta.horario}</p>
                     <p><strong>Descrição:</strong> {consulta.desc || "Sem observações"}</p>
