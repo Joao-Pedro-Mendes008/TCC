@@ -136,7 +136,9 @@ export default function ConsultorioDashboard() {
         
         <AdicionarPaciente aoSalvar={() => router.refresh()} />
         <AdicionarProcedimento aoSalvar={() => router.refresh()} />
-        <ConsultasRealizadas />
+        <div className="card-maior">
+          <ConsultasRealizadas />
+        </div>
       </Container>
     </div>
   );

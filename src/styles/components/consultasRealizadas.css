@@ -6,10 +6,10 @@
 }
 
 .titulo-historico {
-    font-size: 1.5rem;
+    font-size: 28px;
     color: #121212;
     margin-bottom: 20px;
-    font-weight: 500;
+    font-weight: 200;
 }
 
 .loading-state, .empty-state-historico {

@@ -86,13 +86,13 @@ export default function AdicionarProcedimento({ aoSalvar }) {
                     disabled={loading}
                     style={{
                         marginTop: '10px',
-                        width: '100%',
-                        height: '48px',
+                        width: '300px',
+                        height: '6vh',
                         backgroundColor: '#0c9ee2',
                         color: 'white',
                         border: 'none',
                         borderRadius: '12px',
-                        fontSize: '1rem',
+                        fontSize: '1.2rem',
                         fontWeight: '500',
                         cursor: 'pointer',
                         display: 'flex',
