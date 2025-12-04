@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { SessionContext } from "@/context/sessionContext";
 import {
     getConsultaById,
-    deleteConsulta,
+    cancelarConsulta,
     realizarConsulta,
     confirmarConsulta,
     desconfirmarConsulta,
@@ -81,7 +81,7 @@ function ConteudoConsulta() {
     const handleExcluir = async () => {
         if (!confirm("Tem certeza que deseja cancelar/excluir esta consulta?")) return;
         setLoadingAction(true);
-        const { error } = await deleteConsulta(idConsulta);
+        const { error } = await cancelarConsulta(idConsulta);
         if (error) {
             alert("Erro ao cancelar: " + error.message);
             setLoadingAction(false);

@@ -13,6 +13,9 @@ import BotaoRedirecionar from "@/components/ui/botaoRedirecionar";
 import supabase from "@/../utils/supabase/client";
 import { useRouter } from "next/navigation";
 import AdicionarPaciente from "@/components/consultorio/adicionarPacientes";
+import { Users } from "lucide-react";
+import AdicionarProcedimento from "@/components/consultorio/adicionarProcedimento";
+import ConsultasRealizadas from "@/components/consultorio/consultasRealizadas";
 
 export default function ConsultorioDashboard() {
   const { session } = useContext(SessionContext);
@@ -66,10 +69,22 @@ export default function ConsultorioDashboard() {
           Olá, {session?.user?.user_metadata?.nome || "Doutor(a)"}
         </h3>
 
+
         <div className="card-maior">
-          <h4 className="titulo-secao">Proximas consultas</h4>
+          <h4 className="titulo-secao">Próximas consultas</h4>
           <ListaConsultas />
           <BotaoRedirecionar texto="Agenda completa" url="/consultorio/agenda" />
+        </div>
+
+        <div className="card-maior">
+          <h4 className="titulo-secao">Pacientes e Prontuários</h4>
+          <p style={{ marginBottom: '15px', color: '#666' }}>
+            Acesse a lista completa de pacientes, perfis e fichas de anamnese.
+          </p>
+          <BotaoRedirecionar 
+            texto="Ver Meus Pacientes" 
+            url="/consultorio/pacientes" 
+          />
         </div>
 
         <div className="card-maior">
@@ -118,7 +133,10 @@ export default function ConsultorioDashboard() {
             />
           </form>
         </div>
+        
         <AdicionarPaciente aoSalvar={() => router.refresh()} />
+        <AdicionarProcedimento aoSalvar={() => router.refresh()} />
+        <ConsultasRealizadas />
       </Container>
     </div>
   );

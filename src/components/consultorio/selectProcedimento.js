@@ -1,16 +1,23 @@
 "use client"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import supabase from "@/../utils/supabase/client";
+import { SessionContext } from "@/context/sessionContext"; // Importando o contexto
 
 export default function SelectProcedimento({ setProcedimentoId }) {
+  const { session } = useContext(SessionContext); // Pega o usuário logado
   const [procedimentos, setProcedimentos] = useState([]);
   const [busca, setBusca] = useState("");
 
   useEffect(() => {
     const fetchProcedimentos = async () => {
+      // Segurança: só busca se tiver usuário logado
+      if (!session?.user?.id) return; 
+
       let query = supabase
         .from('procedimentos')
         .select('id, nome_procedimento, preco')
+        // FILTRO: Apenas procedimentos criados por este consultório
+        .eq('id_consultorio', session.user.id) 
         .order('nome_procedimento');
 
       if (busca.length > 0) {
@@ -25,7 +32,7 @@ export default function SelectProcedimento({ setProcedimentoId }) {
 
     const timeoutId = setTimeout(() => fetchProcedimentos(), 300);
     return () => clearTimeout(timeoutId);
-  }, [busca]);
+  }, [busca, session]);
 
   return (
     <div className="busca-container">

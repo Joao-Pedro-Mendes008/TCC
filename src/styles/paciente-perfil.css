@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
+
+/* --- PERFIL DO PACIENTE --- */
+.patient-header-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    font-family: 'Google Sans Flex', sans-serif;
+}
+
+.patient-avatar-lg {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e0f2fe;
+}
+
+.patient-avatar-placeholder-lg {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #0c9ee2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.patient-info-main {
+    flex: 1;
+}
+
+.patient-info-main h2 {
+    color: #0c9ee2;
+    margin: 0 0 5px 0;
+    font-weight: 500;
+}
+
+.cpf-badge {
+    background-color: #f1f5f9;
+    color: #64748b;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.patient-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* ESTILO NOVO DOS BOTÕES */
+.btn-action {
+    font-family: 'Google Sans Flex', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    height: 5vh;
+    min-height: 40px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .2s;
+    outline: none;
+    border: none;
+}
+
+.btn-action.primary {
+    background-color: #0c9ee2;
+    color: white;
+}
+
+.btn-action.primary:hover {
+    filter: brightness(0.9);
+}
+
+.btn-action.secondary {
+    background-color: white;
+    border: 1px solid #0c9ee2;
+    color: #0c9ee2;
+}
+
+.btn-action.secondary:hover {
+    background-color: #e0f2fe;
+}
+
+/* Grid de Conteúdo */
+.patient-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    font-family: 'Google Sans Flex', sans-serif;
+}
+
+.info-section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.section-title h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.btn-icon-edit {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+}
+
+.btn-icon-edit:hover {
+    color: #0c9ee2;
+}
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    gap: 12px;
+}
+
+.icon-muted {
+    color: #94a3b8;
+    margin-top: 3px;
+}
+
+.info-item label {
+    display: block;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.info-item p {
+    margin: 0;
+    color: #334155;
+    font-weight: 500;
+}
+
+/* Resumo Clínico */
+.clinical-summary {
+    color: #666;
+}
+
+.empty-msg {
+    font-style: italic;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: #0c9ee2;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    font-family: 'Google Sans Flex', sans-serif;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .patient-header-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .patient-content-grid {
+        grid-template-columns: 1fr;
+    }
+}

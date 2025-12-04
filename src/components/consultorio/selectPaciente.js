@@ -1,9 +1,11 @@
 "use client"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import supabase from "@/../utils/supabase/client";
 import "@/styles/components/selectPaciente.css"
+import { SessionContext } from "@/context/sessionContext"; // Import necessário para o filtro
 
 export default function SelectPaciente({ setPacienteId }) {
+  const { session } = useContext(SessionContext); // Pega o usuário logado
   const [pacientes, setPacientes] = useState([]);
   const [busca, setBusca] = useState("");
 
@@ -14,9 +16,19 @@ export default function SelectPaciente({ setPacienteId }) {
 
   useEffect(() => {
     const fetchPacientes = async () => {
+      if (!session?.user?.id) return; // Segurança: só busca se tiver usuário
+
       let query = supabase
         .from('usuarios')
-        .select('id, nome_completo, cpf, data_nascimento') 
+        .select(`
+            id, 
+            nome_completo, 
+            cpf, 
+            data_nascimento,
+            consultorios_usuarios!inner(consultorio_id)
+        `) 
+        // FILTRO: Apenas pacientes deste consultório
+        .eq('consultorios_usuarios.consultorio_id', session.user.id)
         .order('nome_completo');
 
       if (busca.length > 0) {
@@ -31,7 +43,7 @@ export default function SelectPaciente({ setPacienteId }) {
 
     const timeoutId = setTimeout(() => fetchPacientes(), 300);
     return () => clearTimeout(timeoutId);
-  }, [busca]);
+  }, [busca, session]);
 
   return (
     <div className="busca-container">

@@ -107,21 +107,6 @@ export async function cancelarConsulta(id_consulta) {
     try {
         const { error } = await supabase
             .from('consultas')
-            .update({ status: 'Cancelada' })
-            .eq('id', id_consulta);
-
-        if (error) throw error;
-        return { error: null };
-    } catch (err) {
-        return { error: err };
-    }
-
-}
-
-export async function deleteConsulta(id_consulta) {
-    try {
-        const { error } = await supabase
-            .from('consultas')
             .delete()
             .eq('id', id_consulta);
 
@@ -130,8 +115,7 @@ export async function deleteConsulta(id_consulta) {
     } catch (err) {
         return { error: err };
     }
-
-};
+}
 
 export async function desconfirmarConsulta(id_consulta) {
     try {

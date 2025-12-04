@@ -1,80 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
+
 .lista-container {
-    list-style: none;
     width: 100%;
+    list-style: none;
     padding: 0;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    font-family: 'Google Sans Flex', sans-serif;
 }
 
 .card {
     align-self: flex-start;
-    width: 65vw;
+    width: 100%;
     justify-content: flex-start;
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    border-left-color: rgb(132, 0, 255);
-    border-left-width: 6px;
-    border-left-style: solid;
+    gap: 8px;
+    border-left: 6px solid #0c9ee2;
     color: #333;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .card-nome {
     font-size: 1.1rem;
-    font-weight: 200;
-    color: #111;
+    font-weight: 500;
+    color: #333;
 }
 
 .card-procedimento {
-    color: rgb(0, 42, 255);
-    font-weight: 300;
-    font-size: 0.9rem;
+    color: #0c9ee2;
+    font-weight: 600;
+    font-size: 0.85rem;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .card-data {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #666;
     display: flex;
     align-items: center;
     gap: 5px;
+    font-weight: 500;
+}
+
+.card-status {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+    margin-top: 5px;
+}
+
+.text-green-600 {
+    color: #16a34a;
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 button {
     cursor: pointer;
+    font-family: 'Google Sans Flex', sans-serif;
+    outline: none;
 }
 
-.botoes{
-    display:flex;
-    gap: 1rem;
-}
-
-.btn-confirmar{
-    width: 6vw;
-    border: solid 2px rgb(85, 236, 108);
+.btn-confirmar, .btn-cancelar, .btn-detalhes {
+    width: 45px;
+    height: 45px;
     border-radius: 12px;
-    background: none;
-    color: #121212;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    background-color: transparent;
 }
 
-.btn-cancelar{
-    width: 6vw;
-    border: solid 2px rgb(255, 102, 102);
-    border-radius: 12px;
-    background: none;
-    color: #121212;
+.btn-confirmar {
+    border: 1px solid #22c55e;
+    color: #22c55e;
+}
+.btn-confirmar:hover {
+    background-color: #22c55e;
+    color: white;
 }
 
-.btn-detalhes{
-    width: 6vw;
-    border: solid 2px rgb(255, 255, 255);
-    border-radius: 12px;
-    background: none;
-    color: #121212;
+.btn-cancelar {
+    border: 1px solid #ef4444;
+    color: #ef4444;
+}
+.btn-cancelar:hover {
+    background-color: #ef4444;
+    color: white;
+}
+
+
+.btn-detalhes {
+    border: 1px solid #0c9ee2;
+    color: #0c9ee2;
+}
+.btn-detalhes:hover {
+    background-color: #0c9ee2;
+    color: white;
 }

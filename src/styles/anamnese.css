@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
+
+.anamnese-container {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Google Sans Flex', sans-serif;
+}
+
+.anamnese-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title-flex {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #0c9ee2;
+    font-weight: 500;
+}
+
+.icon-red {
+    color: #e11d48;
+}
+
+.header-titles p {
+    margin: 0;
+    color: #666;
+}
+
+.btn-save-top {
+    font-family: 'Google Sans Flex', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    height: 5vh;
+    min-height: 40px;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: #0c9ee2;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .2s;
+    outline: none;
+    border: none;
+}
+
+.btn-save-top:hover {
+    filter: brightness(0.9);
+}
+
+.form-sections-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-section {
+    background-color: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.highlight-section {
+    border-left: 4px solid #0c9ee2;
+}
+
+.alert-bg {
+    background-color: #fff1f2;
+}
+
+.alert-label {
+    color: #be123c !important;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.form-section label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 8px;
+}
+
+.form-section textarea {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px;
+    font-family: 'Google Sans Flex', sans-serif;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+    background-color: #f8fafc;
+    font-size: 0.95rem;
+}
+
+.form-section textarea:focus {
+    border-color: #0c9ee2;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(12, 158, 226, 0.1);
+}
+
+.anamnese-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.btn-save-bottom {
+    font-family: 'Google Sans Flex', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
+    height: 5vh;
+    min-height: 40px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: #0c9ee2;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .2s;
+    outline: none;
+    border: none;
+}
+
+.btn-save-bottom:hover {
+    filter: brightness(0.9);
+}
+
+@media (max-width: 768px) {
+    .form-sections-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+textarea {
+    color: #666;
+}

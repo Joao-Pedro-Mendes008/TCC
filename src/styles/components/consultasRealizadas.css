@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
+
+.historico-container {
+    width: 100%;
+    font-family: 'Google Sans Flex', sans-serif;
+}
+
+.titulo-historico {
+    font-size: 1.5rem;
+    color: #121212;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.loading-state, .empty-state-historico {
+    text-align: center;
+    color: #666;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Google Sans Flex', sans-serif;
+}
+
+.lista-realizadas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-realizada {
+    background-color: white;
+    border-radius: 12px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-left: 5px solid #0c9ee2;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card-realizada:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card-header-realizada {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.data-badge {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.procedimento-tag {
+    background-color: #e0f2fe;
+    color: #0c9ee2;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+
+.card-body-realizada {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.paciente-nome {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.horario-texto {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.resumo-desc {
+    margin: 5px 0 0 0;
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+}
+
+.card-footer-realizada {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
+
+.btn-ver-detalhes {
+    font-size: 0.85rem;
+    color: #0c9ee2;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}

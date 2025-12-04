@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
-import supabase from "@/../utils/supabase/client";
+import supabase from "@/../utils/supabase/client"; // Ajustei o import para o padrão
 import { Check, Trash2, EllipsisVertical } from 'lucide-react';
 import "@/styles/components/nextConsultas.css";
 import { confirmarConsulta, cancelarConsulta } from "@/hooks/consultas";
@@ -12,7 +12,7 @@ export default function ListaConsultas() {
   const router = useRouter();
   const { session } = useContext(SessionContext);
 
-  const idConsultorioLogado = session?.user.id;
+  const idConsultorioLogado = session?.user?.id;
 
   const handleClick = (id) => {
     router.push(`/consultorio/consulta?id=${id}`);
@@ -21,7 +21,7 @@ export default function ListaConsultas() {
   const handleConfirmar = async (id) => {
     try {
       await confirmarConsulta(id);
-      setConsultas(prev => prev.map(c =>
+      setConsultas(prev => prev.map(c => 
         c.id === id ? { ...c, status: "Confirmada" } : c
       ));
     } catch (error) {
@@ -37,21 +37,23 @@ export default function ListaConsultas() {
     } catch (error) {
       alert("Erro ao cancelar: " + error.message);
     }
-  };
+  }; 
 
   useEffect(() => {
     const fetchConsultas = async () => {
         if (!idConsultorioLogado) return;
 
+        // 1. Calcular datas da Semana Atual (Domingo a Sábado)
         const hoje = new Date();
-        const diaSemana = hoje.getDay();
-
+        const diaSemana = hoje.getDay(); // 0 = Domingo, 6 = Sábado
+        
         const dataInicio = new Date(hoje);
         dataInicio.setDate(hoje.getDate() - diaSemana);
-
+        
         const dataFim = new Date(hoje);
         dataFim.setDate(hoje.getDate() + (6 - diaSemana));
 
+        // Ajuste de fuso horário para garantir string YYYY-MM-DD correta
         const startStr = new Date(dataInicio.getTime() - (dataInicio.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
         const endStr = new Date(dataFim.getTime() - (dataFim.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
 
@@ -69,8 +71,9 @@ export default function ListaConsultas() {
             `)
             .eq('id_consultorio', idConsultorioLogado)
             .eq('usuarios.consultorios_usuarios.consultorio_id', idConsultorioLogado)
-            .gte('data_consulta', startStr)
-            .lte('data_consulta', endStr)
+            .gte('data_consulta', startStr) // Filtra >= Domingo
+            .lte('data_consulta', endStr)   // Filtra <= Sábado
+            .neq('status', 'Realizada')     // Oculta as já realizadas
             .order('data_consulta', { ascending: true })
             .order('horario', { ascending: true });
 
@@ -82,43 +85,43 @@ export default function ListaConsultas() {
     };
 
     fetchConsultas();
-}, [idConsultorioLogado]);
+  }, [idConsultorioLogado]);
 
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       <h3 className="titulo-secao">Agenda da Semana</h3>
       {consultas.length === 0 ? (
-        <p>Nenhuma consulta para esta semana.</p>
+        <p>Nenhuma consulta pendente para esta semana.</p>
       ) : (
         <ul className="lista-container">
-          {consultas.map((c) => (
-            <li key={c.id} className="card">
+        {consultas.map((c) => (
+          <li key={c.id} className="card">
 
-              <span className="card-procedimento">
-                {c.procedimentos?.nome_procedimento || "Procedimento não informado"}
-              </span>
+            <span className="card-procedimento">
+              {c.procedimentos?.nome_procedimento || "Procedimento não informado"}
+            </span>
 
-              <span className="card-nome">
-                {c.usuarios?.nome_completo || "Paciente desconhecido"}
-              </span>
+            <span className="card-nome">
+              {c.usuarios?.nome_completo || "Paciente desconhecido"}
+            </span>
 
-              <div className="card-data">
-                {new Date(c.data_consulta + 'T12:00:00').toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: '2-digit' })}
-                {' '} às {c.horario.slice(0, 5)}
-              </div>
+            <div className="card-data">
+              {new Date(c.data_consulta + 'T12:00:00').toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: '2-digit' })}
+              {' '} às {c.horario.slice(0, 5)}
+            </div>
 
-              <div className="card-status">
-                {c.status}
-              </div>
+            <div className={`card-status ${c.status === 'Confirmada' ? 'text-green-600' : ''}`}>
+              {c.status}
+            </div>
 
-              <div className="botoes">
-                <button className="btn-confirmar" onClick={() => handleConfirmar(c.id)}><Check /></button>
-                <button className="btn-cancelar" onClick={() => handleCancelar(c.id)}><Trash2 /></button>
-                <button className="btn-detalhes" onClick={() => handleClick(c.id)}><EllipsisVertical /></button>
-              </div>
-            </li>
-          ))}
-        </ul>
+            <div className="botoes">
+              <button className="btn-confirmar" onClick={() => handleConfirmar(c.id)}><Check /></button>
+              <button className="btn-cancelar" onClick={() => handleCancelar(c.id)}><Trash2 /></button>
+              <button className="btn-detalhes" onClick={()=> handleClick(c.id)}><EllipsisVertical /></button>
+            </div>
+          </li>
+        ))}
+      </ul>
       )}
     </div>
   );
