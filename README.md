@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+---
 
-## Getting Started
+````markdown
+# 🍬 QuickTreat
 
-First, run the development server:
+QuickTreat é uma aplicação web moderna, rápida, desenvolvida para oferecer uma experiência simples e eficiente diretamente no navegador.
+
+🔗 **Deploy:** https://quicktreat.vercel.app
+
+---
+
+## ✨ Visão Geral
+
+O **QuickTreat** foi criado com foco em:
+-  Performance
+-  Simplicidade de uso
+- Acesso direto via web, sem necessidade de instalação
+
+A aplicação está hospedada na **Vercel**, garantindo alta disponibilidade e carregamento rápido.
+
+---
+
+## 🚀 Acesso à Aplicação
+
+Você pode acessar a versão online através do link:
+
+👉 **https://quicktreat.vercel.app**
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+> *(Ajuste conforme o stack real do projeto)*
+
+- ⚛️ **Frontend:** React / Next.js  
+- 🎨 **Estilização:** CSS / Tailwind / Styled Components  
+- ☁️ **Deploy:** Vercel  
+- 🧩 **Outros:** APIs externas / bibliotecas modernas do ecossistema JavaScript  
+
+---
+
+## 📦 Instalação Local
+
+Caso queira rodar o projeto localmente:
 
 ```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/quicktreat.git
+
+# Entre na pasta do projeto
+cd quicktreat
+
+# Instale as dependências
+npm install
+
+# Inicie o servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+````
+
+Depois, acesse:
+
+```
+http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📄 Licença
 
-## Learn More
+Este projeto está sob a licença **MIT**.
+Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💡 Autor
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Desenvolvido por **João Pedro Mendes Fernandes**
 
-## Deploy on Vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
