@@ -63,14 +63,6 @@ http://localhost:3000
 
 ---
 
-
-## 📄 Licença
-
-Este projeto está sob a licença **MIT**.
-Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
 ## 💡 Autor
 
 Desenvolvido por **João Pedro Mendes Fernandes**
